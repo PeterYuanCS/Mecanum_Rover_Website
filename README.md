@@ -19,3 +19,5 @@ npm run dev
 ```
 
 Open the local address shown in the terminal.
+
+This summer project has been supervised by Simon Provost.
