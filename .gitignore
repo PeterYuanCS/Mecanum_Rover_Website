@@ -1,0 +1,88 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/.vinext/
+/out/
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+next-env.d.ts
+/dist/
+/.wrangler/
+# Checkout-local execution profile and generated tool state
+/.sites-runtime/
+/outputs/
+/output/
+/work/
+
+# Coding assistants and agent tooling
+.agents/
+.agent/
+.codex/
+.openai/
+.chatgpt/
+.claude/
+.cursor/
+.windsurf/
+.continue/
+.aider/
+.cline/
+.roo/
+.junie/
+.augment/
+.amazonq/
+.codeium/
+.tabnine/
+.qodo/
+.copilot/
+.mcp/
+.mcp.json
+mcp.json
+.aider*
+.goosehints
+
+# Repository-level instructions generated for coding assistants
+AGENT.md
+AGENTS.md
+CODEX.md
+CLAUDE.md
+COPILOT.md
+CURSOR.md
+GEMINI.md
+QWEN.md
+WINDSURF.md
+.github/agents/
+.github/chatmodes/
+.github/skills/
+.github/copilot-instructions.md
+.github/instructions/
+.github/prompts/
