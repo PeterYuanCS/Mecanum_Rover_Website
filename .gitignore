@@ -36,53 +36,6 @@ yarn-error.log*
 
 # typescript
 next-env.d.ts
-/dist/
-/.wrangler/
-# Checkout-local execution profile and generated tool state
-/.sites-runtime/
 /outputs/
 /output/
 /work/
-
-# Coding assistants and agent tooling
-.agents/
-.agent/
-.codex/
-.openai/
-.chatgpt/
-.claude/
-.cursor/
-.windsurf/
-.continue/
-.aider/
-.cline/
-.roo/
-.junie/
-.augment/
-.amazonq/
-.codeium/
-.tabnine/
-.qodo/
-.copilot/
-.mcp/
-.mcp.json
-mcp.json
-.aider*
-.goosehints
-
-# Repository-level instructions generated for coding assistants
-AGENT.md
-AGENTS.md
-CODEX.md
-CLAUDE.md
-COPILOT.md
-CURSOR.md
-GEMINI.md
-QWEN.md
-WINDSURF.md
-.github/agents/
-.github/chatmodes/
-.github/skills/
-.github/copilot-instructions.md
-.github/instructions/
-.github/prompts/
