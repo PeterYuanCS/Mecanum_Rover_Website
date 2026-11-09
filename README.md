@@ -1,6 +1,6 @@
 <div align="center">
   <p><img src="assets/mecanum-rover.svg" alt="Mecanum Rover" width="900"></p>
-  <p><a href="https://mecanum-rover-website.vercel.app">Website</a></p>
+  <p><a href="https://mecanum-rover-website.vercel.app">Website</a> / <a href="https://github.com/PeterYuanCS/Mecanum_Rover_Code">OSS Code</a></p>
 </div>
 
 ## <img src="assets/icons/circle-check-big.svg" width="32" alt="" /> Prerequisites
