@@ -18,6 +18,4 @@ npm run dev
 
 Open the local address shown in the terminal. The rover firmware is available in [Mecanum Rover Code](https://github.com/PeterYuanCS/Mecanum_Rover_Code).
 
-This summer project has been supervised by Simon Provost.
-
 Cheers,

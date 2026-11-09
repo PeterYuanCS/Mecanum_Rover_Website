@@ -20,7 +20,7 @@ export default function ReportPage() {
       <header className="report-masthead">
         <h1>The Making of a<br />Mecanum Rover</h1>
         <div className="report-meta">
-          <div className="report-byline"><span>Peter Yuan</span><span>Supervised by Simon Provost</span></div>
+          <div className="report-byline"><span>Peter Yuan</span></div>
           <a className="report-download" href="/downloads/the-making-of-a-mecanum-rover.pdf" download>
             <Download aria-hidden="true" size={15} strokeWidth={1.7} />
             Download in PDF

@@ -94,7 +94,6 @@ export function WatchExperience() {
               <button type="button" className="watch-screen-play" aria-label={playing ? 'Pause video' : 'Start Rover'} onClick={togglePlay}>
                 {!playing && <span><RoverMark className="watch-rover-mark" /><small>Start Rover</small></span>}
               </button>
-              <div className="draft-watermark watch-watermark" aria-label="Draft by Simon Provost"><span className="draft-word">DRAFT</span><span className="draft-byline">By Simon Provost</span></div>
             </div>
             <div className="watch-screen-bottom"><span>Version 0.0.1</span><span>ESP32 / HC-SR04</span></div>
           </div>
