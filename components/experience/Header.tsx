@@ -2,6 +2,7 @@
 import { ArrowUpRight } from 'lucide-react';
 import type { MouseEvent } from 'react';
 import { TransitionLink as Link } from './PageTransition';
+import { RoverMark } from './RoverMark';
 
 export function Header({
   goTo,
@@ -26,7 +27,7 @@ export function Header({
           onClick={returnToProject}
           aria-label="Mecanum Rover, back to the beginning"
         >
-          Mecanum<span className="logo-cross">✳</span>Rover
+          Mecanum<RoverMark className="logo-cross" />Rover
         </Link>
         <span className="brand-credit">By Peter Yuan</span>
       </div>

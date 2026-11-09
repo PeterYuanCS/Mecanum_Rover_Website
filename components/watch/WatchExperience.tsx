@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import MuxPlayer, { type MuxPlayerRefAttributes } from '@mux/mux-player-react';
 import { ArrowRight, Box, Maximize, Minimize, Pause, RotateCcw, SkipBack, SkipForward, Volume2, VolumeX } from 'lucide-react';
 import { Header } from '@/components/experience/Header';
+import { RoverMark } from '@/components/experience/RoverMark';
 import { TransitionLink } from '@/components/experience/PageTransition';
 
 const playbackId = 'QfjnSLo8Fo58ghcV3NS6TxXXY7oZo1K5RBAHgHchUOo';
@@ -91,7 +92,7 @@ export function WatchExperience() {
                 onError={() => setError('The film is temporarily unavailable. Please retry playback.')}
               />
               <button type="button" className="watch-screen-play" aria-label={playing ? 'Pause video' : 'Start Rover'} onClick={togglePlay}>
-                {!playing && <span><span className="watch-rover-mark" aria-hidden="true">✳</span><small>Start Rover</small></span>}
+                {!playing && <span><RoverMark className="watch-rover-mark" /><small>Start Rover</small></span>}
               </button>
               <div className="draft-watermark watch-watermark" aria-label="Draft by Simon Provost"><span className="draft-word">DRAFT</span><span className="draft-byline">By Simon Provost</span></div>
             </div>
@@ -105,7 +106,7 @@ export function WatchExperience() {
     <div className="watch-controls-wrap">
       {error && <p className="watch-error" role="alert">{error} <button type="button" onClick={() => { player.current?.load(); setError(''); }}>Retry</button></p>}
       <div className="watch-controls" id="film-controls" role="region" aria-label="Video controls">
-        <button className="watch-play-toggle" type="button" onClick={togglePlay} aria-label={playing ? 'Pause video' : 'Start Rover'} title={playing ? 'Pause' : 'Start Rover'}>{playing ? <Pause size={18} fill="currentColor" /> : <span className="watch-rover-mark" aria-hidden="true">✳</span>}</button>
+        <button className="watch-play-toggle" type="button" onClick={togglePlay} aria-label={playing ? 'Pause video' : 'Start Rover'} title={playing ? 'Pause' : 'Start Rover'}>{playing ? <Pause size={18} fill="currentColor" /> : <RoverMark className="watch-rover-mark" />}</button>
         <button type="button" onClick={() => seek(time - 10)} disabled={!duration} aria-label="Back 10 seconds" title="Back 10 seconds"><SkipBack size={17} /></button>
         <button type="button" onClick={() => seek(time + 10)} disabled={!duration} aria-label="Forward 10 seconds" title="Forward 10 seconds"><SkipForward size={17} /></button>
         <span className="watch-control-divider" />

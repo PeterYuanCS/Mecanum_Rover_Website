@@ -69,5 +69,12 @@
 @keyframes watch-hover{0%,100%{transform:rotateX(4deg) rotateY(-17deg) rotateZ(2deg) translateY(0)}50%{transform:rotateX(2deg) rotateY(-12deg) rotateZ(1deg) translateY(-9px)}}
 @media(max-width:1150px) and (min-width:761px){.watch-heading{left:3%;right:3%}.watch-links a{font-size:8px;gap:9px}.watch-page .pill-nav a{font-size:9px;padding:13px 11px}.watch-page .wordmark{font-size:20px}}
 @media(max-width:760px){.watch-page{min-height:760px}.watch-heading{inset:101px 25px auto;display:block}.watch-heading h1{display:block;font-size:32px;line-height:1.02}.watch-title-left,.watch-title-right{display:block;text-align:left}.watch-title-right br{display:none}.watch-links{display:flex;justify-content:space-between;gap:18px;margin-top:12px}.watch-links a{font-size:7px;gap:8px;padding:9px 0;white-space:nowrap}.watch-links svg{width:12px;height:12px}.watch-stage{top:264px;bottom:163px;width:64vw;max-width:340px}.watch-screen-float{max-height:650px}.watch-screen{transform:rotateX(3deg) rotateY(-12deg) rotateZ(2deg)}.watch-controls-wrap{bottom:77px}.watch-controls{gap:2px;padding:6px}.watch-controls button{width:27px;height:33px}.watch-controls .watch-play-toggle{width:36px;height:36px}.watch-controls .watch-view-toggle{width:28px;padding:0}.watch-view-toggle>span{display:none}.watch-controls .watch-replay,.watch-controls .watch-duration{display:none}.watch-control-divider{margin:0 3px}.watch-time{font-size:8px;min-width:25px}.watch-page[data-expanded=true] .watch-stage{top:20px;bottom:105px;width:auto;max-width:none}.watch-page[data-expanded=true] .watch-screen-float{max-height:none}}
+/* Keep inline video on a stable plane on phones, including during playback. */
+@media(max-width:760px){
+  .watch-screen-float,.watch-screen{animation:none}
+  .watch-screen{transition:none}
+  .watch-screen-face{transform:translateZ(0)}
+  .watch-screen-play>span{backdrop-filter:none}
+}
 @media(max-height:740px) and (min-width:761px){.watch-page{min-height:600px}.watch-stage{top:105px;bottom:140px}.watch-heading{top:105px;bottom:140px}.watch-controls-wrap{bottom:70px}}
 @media(prefers-reduced-motion:reduce){.watch-screen,.watch-screen-float,.watch-heading,.watch-controls-wrap,.watch-rover-mark,.watch-links svg{animation:none;transition:none}.watch-screen,.watch-rover-mark{transform:none!important}}
