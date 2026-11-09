@@ -8,7 +8,7 @@ export function Header({
   activePage = "project",
 }: {
   goTo?: (i: number) => void;
-  activePage?: "project" | "proof-of-concept" | "future-work" | "report";
+  activePage?: "project" | "proof-of-concept" | "future-work" | "report" | "watch-me";
 }) {
   const returnToProject = (event: MouseEvent<HTMLAnchorElement>) => {
     if (activePage === "project" && goTo) {
@@ -38,6 +38,7 @@ export function Header({
           <Link href="/proof-of-concept" data-active={activePage === "proof-of-concept"}>
             Engineering
           </Link>
+          <Link href="/watch-me" data-active={activePage === "watch-me"} aria-current={activePage === 'watch-me' ? 'page' : undefined}>Watch Me</Link>
           <Link href="/future-work" data-active={activePage === "future-work"}>
             Future Work
           </Link>
@@ -50,13 +51,14 @@ export function Header({
           <nav aria-label="Mobile project navigation">
             <Link href="/#project" aria-current={activePage === 'project' ? 'page' : undefined} onClick={event => { event.currentTarget.closest('details')?.removeAttribute('open'); returnToProject(event); }}>Project</Link>
             <Link href="/proof-of-concept" aria-current={activePage === 'proof-of-concept' ? 'page' : undefined} onClick={event => event.currentTarget.closest('details')?.removeAttribute('open')}>Engineering</Link>
+            <Link href="/watch-me" aria-current={activePage === 'watch-me' ? 'page' : undefined} onClick={event => event.currentTarget.closest('details')?.removeAttribute('open')}>Watch Me</Link>
             <Link href="/future-work" aria-current={activePage === 'future-work' ? 'page' : undefined} onClick={event => event.currentTarget.closest('details')?.removeAttribute('open')}>Future Work</Link>
             <Link href="/report" aria-current={activePage === 'report' ? 'page' : undefined} onClick={event => event.currentTarget.closest('details')?.removeAttribute('open')}>Report</Link>
           </nav>
         </details>
         <a
           className="lime-button"
-          href="https://github.com/"
+          href="https://github.com/PeterYuanCS/Mecanum_Rover_Code"
           target="_blank"
           rel="noreferrer"
         >

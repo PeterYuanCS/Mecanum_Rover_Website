@@ -9,7 +9,7 @@ import './report.css';
 
 export const metadata: Metadata = {
   title: 'Report | Mecanum Rover',
-  description: 'Peter Yuan’s account of constructing an ESP32 mecanum rover, including the mechanical assembly, control electronics, distance sensing and proposed autonomous control.',
+  description: 'Peter Yuan’s account of constructing an ESP32 mecanum rover, including the mechanical assembly, distance sensing, three demonstrations and limitations of reactive autonomous control.',
 };
 
 export default function ReportPage() {
@@ -31,8 +31,8 @@ export default function ReportPage() {
         <p>I began this project because of my interest in cars, engineering and autonomous vehicles (vehicles that act on observations of their surroundings). More specifically, I wanted to build a radio-controlled (RC) car in order to examine the difficulties involved in taking a design through mechanical assembly, electrical connections and the software required to coordinate its movement.</p>
         <p>I chose a mecanum rover (a wheeled robotic platform), where each wheel has angled rollers and is driven by a separate motor. The basic idea is that, by coordinating the directions in which the four wheels rotate, the rover can move forwards, sideways or turn on the spot. This arrangement has the advantage of supporting several types of movement, whilst requiring the wheel orientations and motor directions to agree with the movement specified by the controller (control unit).</p>
         <PencilFigure description="The two-deck mecanum rover, with four independently driven wheels, upper-deck electronics and a front distance sensor." />
-        <p>The remainder of this report is structured as follows. I first describe the electrical arrangement and the components used to construct the rover (Sections 2 and 3), after which I explain the construction procedure (Section 4). I then describe the intended obstacle-avoidance method in Section 5, reserve Sections 6 and 7 for the demonstration and limitations, and discuss three possible extensions in Section 8.</p>
-        <p className="report-pivot">I distinguish throughout this report between the physical assembly that I have constructed and the autonomous behaviour that I intend to evaluate, since constructing the platform does not itself establish the performance of its control method.</p>
+        <p>The remainder of this report is structured as follows. The electrical arrangement and components are described in Sections 2 and 3, followed by the construction procedure (Section 4). Section 5 describes the intended obstacle-avoidance method, Sections 6 and 7 present the demonstrations and limitations, and Section 8 discusses three possible extensions.</p>
+        <p className="report-pivot">This report distinguishes the constructed platform and recorded demonstrations (qualitative observations) from a systematic evaluation of control performance.</p>
       </ReportSection>
       <ReportContents />
       <ReportSection id="diagram" number="02" title="The Diagram">
@@ -80,8 +80,20 @@ export default function ReportPage() {
         <p>I intend to deliver the project code as open source, so that the control procedure can be inspected, reproduced and extended. To support reproducibility, I would include the firmware, dependency versions, pin assignments and calibration settings (build configuration), alongside the corresponding wheel arrangement. Access to these details has the advantage of making the implementation inspectable, whilst reproducing the physical behaviour would still require comparable assembly and measurement conditions.</p>
         <p className="report-pivot">In summary, I have specified a control method that links distance observations to explicit movement decisions, with the measurement and motion requirements stated alongside the actions that depend on them.</p>
       </ReportSection>
-      <ReportSection id="showcase" number="06" title="The Showcase"><p className="report-todo">TODO</p></ReportSection>
-      <ReportSection id="limitations" number="07" title="The Limitations"><p className="report-todo">TODO</p></ReportSection>
+      <ReportSection id="showcase" number="06" title="The Showcase">
+        <p>The accompanying video presents three demonstrations in increasing order of control complexity: straight-line movement, obstacle-triggered stopping and autonomous obstacle avoidance (reactive navigation). The following subsections describe each demonstration, relating the observed movement to the role of the wheels, distance sensor and controller.</p>
+        <h3>Straight-Line Movement</h3>
+        <p>First, we command the rover to travel forwards along a straight line, so that the four mecanum wheels can be observed operating together (coordinated movement). This demonstration provides a visual check of the motor directions and wheel arrangement, whilst it does not quantify lateral deviation (sideways drift) or establish how closely the rover would follow the same line over repeated runs.</p>
+        <h3>Obstacle-Triggered Stopping at 30 cm</h3>
+        <p>Second, we combine straight-line movement with the front-facing HC-SR04 (ultrasonic distance sensor), using a clearance threshold of 30 cm (stopping margin). The rover advances until the measured obstacle distance is at or below this threshold, after which the motors are stopped. This demonstration links a distance observation to a movement decision, whilst the configured threshold should be distinguished from an independently measured final stopping distance.</p>
+        <h3>Autonomous Obstacle Avoidance Across the House</h3>
+        <p>Finally, we demonstrate several autonomous runs through the house, with the objective of avoiding as many obstacles as possible (reactive navigation). The rover responds to nearby obstacles by stopping, examining alternative directions and selecting a direction in which to continue. This has the advantage of allowing movement without continuous steering commands, whilst the recorded runs provide qualitative observations rather than a measured obstacle-avoidance success rate.</p>
+        <p className="report-pivot">Overall, the demonstrations progress from coordinated wheel movement to sensor-triggered stopping and reactive navigation; the reader is referred to the website’s <a href="/proof-of-concept">Engineering tab</a> for further information about the physical build.</p>
+      </ReportSection>
+      <ReportSection id="limitations" number="07" title="The Limitations">
+        <p>The present controller has limited navigational intelligence (decision-making), since it reacts to nearby obstacles without remembering previously visited locations (route memory). This simple control loop (sense, stop and turn) has the advantage of requiring little environmental information, whilst it may revisit the same area or repeat a loop without recognising that it has been there before.</p>
+        <p>These limitations motivate the wider sensing and scene understanding discussed in <a href="#future">Section 8 (The Future Works)</a>, whilst avoiding repeated routes would additionally require route memory and a means of recognising revisited locations.</p>
+      </ReportSection>
       <ReportSection id="future" number="08" title="The Future Works">
         <p>I consider three directions for extending the present rover: additional mounting space, observations over a wider range of directions, and camera-based scene information (visual context). The following subsections describe these directions in that order, relating each proposal to a constraint of the current arrangement and to the additional mechanical or software work that it would require.</p>
         <h3>Additional Decks and Accessory Modules</h3>

@@ -4,7 +4,7 @@ import './proof-of-concept.css';
 
 export const metadata: Metadata = {
   title: 'Engineering | Mecanum Rover',
-  description: 'The physical build of the mecanum rover, documented through six stages and 28 photographs, from the first solder joint to the assembled car.',
+  description: 'Seven stages and 35 photographs follow the mecanum rover from its first solder joint to ultrasonic sensing and independent battery power, followed by a film of the rover in motion.',
 };
 
 export default function ProofOfConceptPage() {

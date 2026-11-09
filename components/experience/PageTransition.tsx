@@ -63,7 +63,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
     const destination = new URL(href, window.location.href);
     const controller = new AbortController();
     pending.current = controller;
-    cover.style.backgroundColor = destination.pathname === '/proof-of-concept' ? '#080908' : '#ffffff';
+    cover.style.backgroundColor = ['/proof-of-concept', '/watch-me'].includes(destination.pathname) ? '#080908' : '#ffffff';
     cover.dataset.active = 'true';
     try {
       // Blend the current page into the destination colour before changing its content.

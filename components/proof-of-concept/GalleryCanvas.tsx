@@ -106,7 +106,7 @@ function paintLabels(canvas: HTMLCanvasElement, index: number, layout: RibbonLay
   ctx.beginPath(); ctx.roundRect(padding, 18, 58, 25, 13); ctx.fill();
   ctx.strokeStyle = '#ffffff45'; ctx.lineWidth = .7; ctx.stroke();
   ctx.fillStyle = '#ffffff'; ctx.font = '9px ui-monospace, monospace';
-  ctx.fillText(`${String(step.id).padStart(2, '0')} / 06`, padding + 10, 34);
+  ctx.fillText(`${String(step.id).padStart(2, '0')} / ${String(buildSteps.length).padStart(2, '0')}`, padding + 10, 34);
 
   const x = width - padding - 17, y = height - 38;
   const focused = button.matches(':hover, :focus-visible');

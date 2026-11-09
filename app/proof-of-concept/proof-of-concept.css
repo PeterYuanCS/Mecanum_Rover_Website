@@ -81,3 +81,6 @@
 @media(max-height:650px) and (min-width:761px){.build-intro{top:108px}.build-intro h1{font-size:27px}.build-footer{bottom:17px}.build-modal{inset:12px 3.3%;padding-top:30px}.build-detail-description{font-size:12px}.build-detail-title{font-size:34px;margin-bottom:17px}.build-album-label{margin-top:20px}.build-detail-copy{position:static}}
 @media(max-height:720px) and (max-width:760px){.build-intro{top:102px}.build-intro h1{font-size:26px}.build-navigation{bottom:45px}.build-footer{bottom:19px}.build-card-caption strong{font-size:23px}}
 @media(prefers-reduced-motion:reduce){.build-canvas{display:none}.build-modal,.build-modal-overlay{animation:none}.build-card-open,.build-navigation button::after,.build-modal-close,.build-thumbnails button img{transition:none}}
+
+.build-detail-paragraph{margin-top:18px}
+.build-detail-copy:has(.build-detail-paragraph){position:static}

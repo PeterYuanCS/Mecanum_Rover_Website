@@ -11,7 +11,7 @@ reactive obstacle-avoidance method.
 
 ## Run the website
 
-Requires Node.js 22.13 or newer.
+Requires Node.js 22 (version 22.13 or newer).
 
 ```bash
 npm install
@@ -19,5 +19,7 @@ npm run dev
 ```
 
 Open the local address shown in the terminal.
+
+The Arduino sketches are available in [Mecanum Rover Code](https://github.com/PeterYuanCS/Mecanum_Rover_Code).
 
 This summer project has been supervised by Simon Provost.

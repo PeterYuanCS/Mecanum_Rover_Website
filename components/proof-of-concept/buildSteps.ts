@@ -4,6 +4,8 @@ export type BuildStep = {
   title: string;
   category: string;
   description: string;
+  href?: string;
+  details?: string[];
   photos: BuildPhoto[];
 };
 
@@ -73,7 +75,7 @@ export const buildSteps: BuildStep[] = [
     id: 6,
     title: 'The Assembled Rover',
     category: 'Battery Holder & Walkaround',
-    description: 'Finally, we attached the lithium-ion (Li-ion) battery holder to the upper metal deck, alongside the control electronics. Mounting the holder on the rover brings the power source into the assembly, whilst the remaining space must accommodate the connecting leads. Overall, these photographs record the assembled rover from several angles (a full walkaround), bringing the six stages of the physical build together.',
+    description: 'At this stage, we attached the lithium-ion (Li-ion) battery holder to the upper metal deck, alongside the control electronics. Mounting the holder on the rover brings the power source into the assembly, whilst the remaining space must accommodate the connecting leads. These photographs record the assembled rover from several angles (a full walkaround), before the final wiring and battery arrangement described in the next stage.',
     photos: [
       { id: '6', caption: 'The assembled rover with its battery holder mounted on the upper deck.' },
       { id: '6.1', caption: 'A side view of the two decks, control electronics and connecting leads.' },
@@ -83,6 +85,34 @@ export const buildSteps: BuildStep[] = [
       { id: '6.5', caption: 'The opposite side of the rover, with both mecanum wheels visible.', portrait: true },
       { id: '6.6', caption: 'The battery-holder end of the rover, completing the walkaround.', portrait: true },
     ],
+  },
+  {
+    id: 7,
+    title: 'Ready to Roam',
+    category: 'Distance Sensing & Independent Power',
+    description: 'With the front-facing HC-SR04 (ultrasonic distance sensor) connected, we completed the electrical assembly and brought the battery supply into operation. The rover can now power its electronics and execute its obstacle-avoidance routine without a computer plugged in (standalone operation), whilst its navigation remains dependent on the local distance observations described in the report.',
+    details: [
+      'First, routing the leads around the electronics required repeated adjustments (cable management), since loose connections and unsupported wires could move during a run. We therefore worked on securing the connections and keeping the wiring stable, so that driving the rover would not require another round of cable rearrangement after every attempt; the difficulty was achieving this robustness within the limited space around the boards.',
+      'Second, the battery proved too large for the available space on the upper deck (chassis), making the original placement overly optimistic. We therefore raised it above the electronics on a separate support, giving it a floating appearance (elevated mounting) and freeing the deck for the wiring, whilst introducing a further mounting point whose stability must be maintained during movement.',
+      'Overall, the photographs document the connected distance sensor, the completed wiring and the elevated battery arrangement, bringing the rover from a workbench assembly to a platform capable of independent operation.',
+    ],
+    photos: [
+      { id: '7', caption: 'The front-facing ultrasonic sensor mounted above the drive base.', portrait: true },
+      { id: '7.1', caption: 'The connected rover on the workbench, with the distance sensor at the front.', portrait: true },
+      { id: '7.2', caption: 'A second overview of the completed electronics and wheel assembly.', portrait: true },
+      { id: '7.3', caption: 'The wiring beneath the raised battery, viewed from the rear.', portrait: true },
+      { id: '7.4', caption: 'The elevated battery support and the leads routed around the control electronics.', portrait: true },
+      { id: '7.5', caption: 'An overhead view of the controller connections and available deck space.', portrait: true },
+      { id: '7.6', caption: 'The completed rover, with its front sensor, wiring and independent power supply.', portrait: true },
+    ],
+  },
+  {
+    id: 8,
+    title: 'Watch Me',
+    category: 'The Rover in Motion',
+    description: '',
+    href: '/watch-me',
+    photos: [],
   },
 ];
 

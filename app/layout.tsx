@@ -20,10 +20,6 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <PageTransition>{children}</PageTransition>
-        <div className="draft-watermark" aria-hidden="true">
-          <span className="draft-word">DRAFT</span>
-          <span className="draft-byline">By Simon Provost</span>
-        </div>
       </body>
     </html>
   );

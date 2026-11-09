@@ -39,3 +39,16 @@ next-env.d.ts
 /outputs/
 /output/
 /work/
+
+# Local build and editor state
+*.tsbuildinfo
+.idea/
+.vscode/
+dist/
+.wrangler/
+.sites-runtime/
+.openai/
+
+# Framework-generated assistant guidance
+AGENTS.md
+CLAUDE.md

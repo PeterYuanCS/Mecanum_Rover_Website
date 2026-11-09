@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Dialog } from 'radix-ui';
+import { useRouter } from 'next/navigation';
 import { ArrowLeft, ArrowRight, ArrowUpRight, X } from 'lucide-react';
 import { Header } from '@/components/experience/Header';
 import { buildSteps, photoPath } from './buildSteps';
@@ -9,6 +10,8 @@ import { GalleryCanvas } from './GalleryCanvas';
 import { nearestStage, pushRibbon, ribbonLayout, wrapStage } from './ribbonMotion';
 
 export function BuildGallery() {
+  const router = useRouter();
+  const total = String(buildSteps.length).padStart(2, '0');
   const stage = useRef<HTMLDivElement>(null);
   const rail = useRef<HTMLDivElement>(null);
   const target = useRef(0);
@@ -57,11 +60,13 @@ export function BuildGallery() {
 
   const open = (index: number, button: HTMLButtonElement) => {
     if (drag.current.moved) return;
+    if (buildSteps[index].href) { router.push(buildSteps[index].href!); return; }
     opener.current = button;
     paused.current = true;
     setSelected(index);
   };
   const changeAlbum = (index: number) => {
+    if (buildSteps[index].href) { router.push(buildSteps[index].href!); return; }
     setSelected(index);
     navigate(index);
     detail.current?.scrollTo({ top: 0, behavior: 'instant' });
@@ -108,7 +113,7 @@ export function BuildGallery() {
           if (['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) {
             event.preventDefault();
             const next = Math.round(target.current) + (event.key === 'ArrowRight' ? 1 : -1);
-            const index = event.key === 'Home' ? 0 : event.key === 'End' ? 5 : ready ? wrapStage(next, buildSteps.length) : clamp(next);
+            const index = event.key === 'Home' ? 0 : event.key === 'End' ? buildSteps.length - 1 : ready ? wrapStage(next, buildSteps.length) : clamp(next);
             navigate(index);
             rail.current?.querySelectorAll<HTMLButtonElement>('.build-card')[index].focus({ preventScroll: true });
           }
@@ -127,8 +132,8 @@ export function BuildGallery() {
           {buildSteps.map((item, index) => (
             <button
               type="button" className="build-card" key={item.id}
-              aria-label={`Open stage ${item.id}: ${item.title}, ${item.photos.length} photographs`}
-              aria-haspopup="dialog"
+              aria-label={item.href ? 'Watch Me: open the rover film' : `Open stage ${item.id}: ${item.title}, ${item.photos.length} photographs`}
+              aria-haspopup={item.href ? undefined : 'dialog'}
               onClick={event => { if (event.detail === 0) drag.current.moved = false; open(index, event.currentTarget); }}
               onKeyUp={event => { if (event.key === 'Tab') navigate(index); }}
               onFocus={() => { if (!drag.current.down) navigate(index); }}
@@ -136,7 +141,7 @@ export function BuildGallery() {
               {/* Native images remain the no-WebGL and reduced-motion presentation. */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={photoPath(String(item.id), 'cover')} alt="" draggable={false} width={960} height={720} />
-              <span className="build-card-count">{String(item.id).padStart(2, '0')} / 06</span>
+              <span className="build-card-count">{String(item.id).padStart(2, '0')} / {total}</span>
               <span className="build-card-caption"><span><small>{item.category}</small><strong>{item.title}</strong></span><span className="build-card-open"><ArrowUpRight size={18} /></span></span>
             </button>
           ))}
@@ -146,7 +151,7 @@ export function BuildGallery() {
         <nav id="build-navigation" className="build-navigation" aria-label="Build stages">
           {buildSteps.map((item, index) => <button type="button" key={item.id} onClick={() => navigate(index)} aria-label={`Go to stage ${item.id}: ${item.title}`} aria-current={active === index ? 'step' : undefined}>{String(item.id).padStart(2, '0')}</button>)}
         </nav>
-        <div className="build-paging"><span aria-live="polite">{String(active + 1).padStart(2, '0')} <i>/ 06</i></span><button type="button" aria-label="Previous build stage" disabled={!ready && active === 0} onClick={() => navigate(Math.round(target.current) - 1)}><ArrowLeft size={17} /></button><button type="button" aria-label="Next build stage" disabled={!ready && active === 5} onClick={() => navigate(Math.round(target.current) + 1)}><ArrowRight size={17} /></button></div>
+        <div className="build-paging"><span aria-live="polite">{String(active + 1).padStart(2, '0')} <i>/ {total}</i></span><button type="button" aria-label="Previous build stage" disabled={!ready && active === 0} onClick={() => navigate(Math.round(target.current) - 1)}><ArrowLeft size={17} /></button><button type="button" aria-label="Next build stage" disabled={!ready && active === buildSteps.length - 1} onClick={() => navigate(Math.round(target.current) + 1)}><ArrowRight size={17} /></button></div>
       </footer>
 
       <Dialog.Root open={selected !== null} onOpenChange={value => { if (!value) { setSelected(null); paused.current = false; } }}>
@@ -159,9 +164,10 @@ export function BuildGallery() {
             {step && <>
               <Dialog.Close className="build-modal-close" aria-label="Close photo album"><X size={20} /></Dialog.Close>
               <aside className="build-detail-copy">
-                <p className="build-eyebrow">Stage {String(step.id).padStart(2, '0')} / 06 <span className="build-detail-category">{step.category}</span></p>
+                <p className="build-eyebrow">Stage {String(step.id).padStart(2, '0')} / {total} <span className="build-detail-category">{step.category}</span></p>
                 <Dialog.Title className="build-detail-title">{step.title}</Dialog.Title>
                 <Dialog.Description className="build-detail-description">{step.description}</Dialog.Description>
+                {step.details?.map(paragraph => <p key={paragraph} className="build-detail-description build-detail-paragraph">{paragraph}</p>)}
                 <p className="build-album-label">The Photographs <span>{String(step.photos.length).padStart(2, '0')}</span></p>
                 <div className="build-thumbnails" aria-label="Photographs in this stage">
                   {step.photos.map(photo => <button key={photo.id} type="button" aria-label={`View photograph ${photo.id}: ${photo.caption}`} onClick={() => document.getElementById(`build-photo-${photo.id}`)?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' })}>
@@ -169,7 +175,7 @@ export function BuildGallery() {
                     <img src={photoPath(photo.id, 'thumb')} alt="" width={72} height={60} /><span>{photo.id}</span>
                   </button>)}
                 </div>
-                <div className="build-album-navigation"><button type="button" disabled={selected === 0} onClick={() => changeAlbum(selected! - 1)}><ArrowLeft size={15} /> Previous Stage</button><button type="button" disabled={selected === 5} onClick={() => changeAlbum(selected! + 1)}>Next Stage <ArrowRight size={15} /></button></div>
+                <div className="build-album-navigation"><button type="button" disabled={selected === 0} onClick={() => changeAlbum(selected! - 1)}><ArrowLeft size={15} /> Previous Stage</button><button type="button" disabled={selected === buildSteps.length - 1} onClick={() => changeAlbum(selected! + 1)}>{buildSteps[(selected ?? 0) + 1]?.href ? 'Watch Me' : 'Next Stage'} <ArrowRight size={15} /></button></div>
               </aside>
               <div className="build-photo-column" key={step.id}>
                 {step.photos.map((photo, index) => <figure key={photo.id} id={`build-photo-${photo.id}`}>
